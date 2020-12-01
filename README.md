@@ -23,7 +23,7 @@ Parameter | Description | Default
 `imageCredentials` | Values for pulling images from Azure Contianer Registry | ``
 `imageCredentials.registry` | URL of image registry required for authentication | `https://keenioustakehome.azurecr.io`
 `imageCredentials.username` | Username of user to authenticate  | `Azure Service principal ID`
-`imageCredentials.password` | Password of user to authenticate  | `Azure Service principal password:`
+`imageCredentials.password` | Password of user to authenticate  | `Azure Service principal password`
 `imageCredentials.email` | User email | `any email`
 `service.type` | Node port to expose endpoints | `NodePort`
 `service.port` | Service type | `8000`
