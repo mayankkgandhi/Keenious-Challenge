@@ -7,13 +7,21 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   replicas: {{ .Values.textsearchservice.replicaCount }}
+{{- if .Values.strategyType }}
+  strategy:
+    type: "{{ .Values.strategyType }}"
+{{- end }}
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: {{ .Values.textsearchservice.name }}
+      version: "current"
   template:
     metadata:
       labels:
         app: {{ .Values.textsearchservice.name }}
+        version: "current"
     spec:
       imagePullSecrets:
       - name: "{{ .Chart.Name }}-secrets"

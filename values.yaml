@@ -50,5 +50,5 @@ textsearchservice:
 
 imageCredentials:
   registry: keenioustakehome.azurecr.io
-  username: cea07629-400b-4ac7-8bba-f2b96460152b
-  password: 51hrdQ4uEK_McvHGxtVSvkSSZAwdrT5q~6
+  username: <Username>
+  password: <Password>

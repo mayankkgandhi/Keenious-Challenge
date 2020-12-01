@@ -7,13 +7,21 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   replicas: {{ .Values.mlinferenceservice.replicaCount }}
+{{- if .Values.strategyType }}
+  strategy:
+    type: "{{ .Values.strategyType }}"
+{{- end }}
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: {{ .Values.mlinferenceservice.name }}
+      version: "current"      
   template:
     metadata:
       labels:
         app: {{ .Values.mlinferenceservice.name }}
+        version: "current"
     spec:
       imagePullSecrets:
       - name: "{{ .Chart.Name }}-secrets"
