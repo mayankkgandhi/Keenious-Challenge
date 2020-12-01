@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.mlsearchservice.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.mlsearchservice.service.type }}
+  ports:
+  - port: {{ .Values.mlsearchservice.service.port }}
+    targetPort: {{ .Values.mlsearchservice.service.port }}
+  selector:
+    app: {{ .Values.mlsearchservice.name }}

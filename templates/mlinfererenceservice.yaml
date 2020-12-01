@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.mlinferenceservice.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.mlinferenceservice.service.type }}
+  ports:
+  - port: {{ .Values.mlinferenceservice.service.port }}
+    targetPort: {{ .Values.mlinferenceservice.service.port }}
+  selector:
+    app: {{ .Values.mlinferenceservice.name }}
