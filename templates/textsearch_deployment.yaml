@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.textsearchservice.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: {{ .Values.textsearchservice.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.textsearchservice.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.textsearchservice.name }}
+    spec:
+      imagePullSecrets:
+      - name: "{{ .Chart.Name }}-secrets"
+      containers:
+      - name: "{{ .Chart.Name  }}"
+        image: "{{ .Values.textsearchservice.image.repository }}"
+        imagePullPolicy: "{{ .Values.textsearchservice.image.pullPolicy }}"
+        ports:
+        - containerPort: {{ .Values.textsearchservice.service.port}}

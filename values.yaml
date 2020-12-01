@@ -1,0 +1,54 @@
+masterservice:
+  name: mastersearch
+  replicaCount: 1
+  image:
+    repository: keenioustakehome.azurecr.io/devops/master-search
+    pullPolicy: Always
+  service:
+    type: NodePort
+    port: 8000
+
+mlinferenceservice:
+  name: mlinference
+  replicaCount: 1
+  image:
+    repository: keenioustakehome.azurecr.io/devops/ml-infer
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8000
+
+mlsearchservice:
+  name: mlsearch
+  replicaCount: 1
+  image:
+    repository: keenioustakehome.azurecr.io/devops/ml-search
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8000
+
+keywordservice:
+  name: keywordsearch
+  replicaCount: 1
+  image:
+    repository: keenioustakehome.azurecr.io/devops/keyword
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8000
+
+textsearchservice:
+  name: textsearch
+  replicaCount: 1
+  image:
+    repository: keenioustakehome.azurecr.io/devops/text-search
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8000
+
+imageCredentials:
+  registry: keenioustakehome.azurecr.io
+  username: cea07629-400b-4ac7-8bba-f2b96460152b
+  password: 51hrdQ4uEK_McvHGxtVSvkSSZAwdrT5q~6

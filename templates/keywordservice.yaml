@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.keywordservice.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.keywordservice.service.type }}
+  ports:
+  - port: {{ .Values.keywordservice.service.port }}
+    targetPort: {{ .Values.keywordservice.service.port }}
+  selector:
+    app: {{ .Values.keywordservice.name }}

@@ -1,0 +1,35 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.masterservice.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: {{ .Values.masterservice.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.masterservice.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.masterservice.name }}
+    spec:
+      imagePullSecrets:
+      - name: "{{ .Chart.Name }}-secrets"
+      containers:
+      - name: "{{ .Chart.Name  }}"
+        image: "{{ .Values.masterservice.image.repository }}"
+        imagePullPolicy: "{{ .Values.masterservice.image.pullPolicy }}"
+        ports:
+        - containerPort: {{ .Values.masterservice.service.port}}
+        env:
+          - name: ML_INFER_HOST 
+            value: "http://{{ .Chart.Name }}-mlinferenceservice:8000"
+          - name: ML_SEARCH_HOST
+            value: "http://{{ .Chart.Name }}-mlsearchservice:8000"
+          - name: KEYWORD_HOST
+            value: "http://{{ .Chart.Name }}-keywordservice:8000"
+          - name: TEXT_SEARCH_HOST
+            value: "http://{{ .Chart.Name }}-textsearchservice:8000"
+

@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.textsearchservice.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.textsearchservice.service.type }}
+  ports:
+  - port: {{ .Values.textsearchservice.service.port }}
+    targetPort: {{ .Values.textsearchservice.service.port }}
+  selector:
+    app: {{ .Values.textsearchservice.name }}

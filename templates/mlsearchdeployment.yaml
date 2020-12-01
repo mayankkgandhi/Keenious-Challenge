@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.mlsearchservice.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: {{ .Values.mlsearchservice.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.mlsearchservice.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.mlsearchservice.name }}
+    spec:
+      imagePullSecrets:
+      - name: "{{ .Chart.Name }}-secrets"
+      containers:
+      - name: "{{ .Chart.Name  }}"
+        image: "{{ .Values.mlsearchservice.image.repository }}"
+        imagePullPolicy: "{{ .Values.mlsearchservice.image.pullPolicy }}"
+        ports:
+        - containerPort: {{ .Values.mlsearchservice.service.port}}

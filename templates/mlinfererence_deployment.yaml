@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.mlinferenceservice.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: {{ .Values.mlinferenceservice.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.mlinferenceservice.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.mlinferenceservice.name }}
+    spec:
+      imagePullSecrets:
+      - name: "{{ .Chart.Name }}-secrets"
+      containers:
+      - name: "{{ .Chart.Name  }}"
+        image: "{{ .Values.mlinferenceservice.image.repository }}"
+        imagePullPolicy: "{{ .Values.mlinferenceservice.image.pullPolicy }}"
+        ports:
+        - containerPort: {{ .Values.mlinferenceservice.service.port}}
