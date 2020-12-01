@@ -95,13 +95,27 @@ $ curl -X POST -H "Content-Type: application/json" -d '{ "text": "This is a test
 {"2021510395":0.5576037740027965,"1493939421":0.09130499047884139,"2024082073":0.237320640544452,"2017010756":0.20212778092545436,"2019561905":0.6643944618924286,"2034657245":0.597550428679728,"2151165161":0.8546315126845343,"2282206560":0.12188109945404664,"2026122807":0.3510942511862534,"2036462485":0.0935369562101464,"1892627350":0.1991459396461716,"2154816389":0.424940631028215,"2038592739":0.09201382235069021,"2164322495":0.18646604374080647,"560428265":0.5686770482076335,"947917320":0.4623156357607878,"2551968658":0.20031902626383744,"2560773895":0.5059492430783962,"2169625486":0.7506346797531278,"20583405":0.08287972651947638,"2025484036":0.746245910786141,"2173749593":0.6211326689153931,"2148643507":0.28528002598348134,"2018198967":0.16001443985081035,"2560250566":0.9409770472606851,"2027662184":0.28248362599335236,"2555381087":0.12493703099012667,"2170923568":0.12704515342966463,"2021284584":0.7976559376684098,"2024080816":0.5205923118574399,"2164573249":0.747835344009791,"2157872937":0.6566860567907287,"2288994830":0.45395983195134076,"156340658":0.9627089954013972,"1487372514":0.3153334978413632,"2014893994":0.4691773298769605,"2021116159":0.775135858871937,"2147608847":0.5357806993913378,"2029191562":0.8155696515174818,"23861248":0.4940359837366162}%
 ```
 
+## CLUSTER LEVEL LOGGING
+
+We can implement cluster level logging using EFK Stack: Elasticsearch, Fluentd and Kibana.
+
+### Cluster Logging Architecture
+
+![alt text](Logging_Architecture.png?raw=true "Logging Architecture")
+
+### Approch
+
+* In this approach, we deploy a node-level logging agent on each node of the cluster. This agent is usually a container with access to log files of all application containers running on that node. For our case, we will deploy a Fluentd logging agent on each node.
+* The easiest way to do is to create a deployement called DaemonSet. The DaemonSet controller will make sure that for every node running in your cluster you have a copy of the logging agent pod.
+* We can make use of Saas services like Logz.io for this implementation.
+
 ## PART 2 - System Design Discussion
 
 ### System Architecture Design
 
 #### A high-level system architecture
 
-![alt text](Architecture.png?raw=true "Architecture")
+![alt text](Architecture.png?raw=true "System Architecture")
 
 #### What potential issues might such a system run into? What would your approach be to solve those issues
 
