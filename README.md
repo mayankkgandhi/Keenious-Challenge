@@ -106,7 +106,7 @@ We can implement cluster level logging using EFK Stack: Elasticsearch, Fluentd a
 ### Approch
 
 * In this approach, we deploy a node-level logging agent on each node of the cluster. This agent is usually a container with access to log files of all application containers running on that node. For our case, we will deploy a Fluentd logging agent on each node.
-* The easiest way to do is to create a deployement called DaemonSet. The DaemonSet controller will make sure that for every node running in your cluster you have a copy of the logging agent pod.
+* The easiest way to do is to create a deployement called DaemonSet. The DaemonSet controller will make sure that for every node running in the cluster, we have a copy of the logging agent pod.
 * We can make use of Saas services like Logz.io for this implementation.
 
 ## PART 2 - System Design Discussion
