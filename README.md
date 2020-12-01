@@ -134,7 +134,7 @@ We can get insights from old and new system services based on interaction and re
 #### How would you help integrate best practices for model versioning for this system to ensure that we always use the correct model with each implementation of the system
 
 * Using Kubernetes metrics, we can monitor how a specific pod and its deployment are being handled by the orchestrator. For our case, we can monitor how the on-progress deployment is going like how many instances are changed from an older version to a new one, health checks, and some network data available through network services.
-* 
+
 * We can use Helm charts for this purpose for our deployment. For new version of model images:
 
 ```console
