@@ -51,9 +51,6 @@ To uninstall/delete the `keenious` deployment:
 helm delete keenious --namespace keenious
 ```
 
-NOTE: This does _not_ delete all resources created by the helm chart. Check for
-secrets, the namespace, and ClusterRoles, etc to be remaining.
-
 ### Verify the Solution
 
 ```console
